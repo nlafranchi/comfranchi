@@ -1,2 +1,2 @@
 # comfranchi
-Node JS Ecommerce Sit
+Node JS Ecommerce Site
