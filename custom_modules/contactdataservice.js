@@ -39,6 +39,7 @@ exports.remove = function (model, _primarycontactnumber, response) {
   }); 
 };
 exports.update = function (model, requestBody, response) {
+  console.log('update', requestBody);
 var primarynumber = requestBody.primarycontactnumber;
   model.findOne({primarycontactnumber: primarynumber}, 
     function(error, data) {
@@ -83,13 +84,13 @@ var primarynumber = requestBody.primarycontactnumber;
         data.groups = contact.groups;
         // now save
         data.save(function (error) {
-        if (!error) {
-          console.log('Successfully updated contact with primary number: '+ primarynumber);
-          data.save();
-        } else {
-          console.log('error on save');
-        }
-      });
+          if (!error) {
+            console.log('Successfully updated contact with primary number: '+ primarynumber);
+            data.save();
+          } else {
+            console.log('error on save');
+          }
+        });
         if (response != null) {
           response.send('Updated');
         }

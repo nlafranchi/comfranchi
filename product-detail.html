@@ -1,0 +1,18 @@
+<template>
+	<form >
+	Name: <input value.bind="name" type="text"/>
+	<br/>
+	Price: <input value.bind="price" type="text"/>
+	<br/>
+	Description: <input value.bind="description" />
+	<br/>
+	<input  click.trigger="saveProduct()" type="submit" value="Submit Form"/>
+	<input click.trigger="getContacts()" type="button" value="Get Contacts"/>
+	<br/>
+	<input value.bind="productImg" type="file" value="Get Contacts"/>
+	<br/>
+	<LABEL>${name}</LABEL>
+	<br/>
+	<LABEL>${price}</LABEL>
+	</form>
+</template>
