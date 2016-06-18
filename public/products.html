@@ -1,0 +1,17 @@
+<template>
+	<section class="">
+		<div class="flex-container ">
+		  <div class="flex-item flex-header"><p>Name</p></div> 
+      <div class="flex-item flex-header"><p>Id</p></div> 
+      <div class="flex-item flex-header"><p>Price</p></div> 
+      <div class="flex-item flex-header"><p>Description</p></div> 
+     
+	  </div>
+		<div repeat.for="product of products" class="flex-container ">
+      <div class="flex-item"><p>${product.name}</p></div> 
+      <div class="flex-item"><p>${product._id}</p></div> 
+      <div class="flex-item"><p>${product.price}</p></div> 
+      <div class="flex-item"><p>${product.description}</p></div> 
+	  </div>
+	</section>
+</template>

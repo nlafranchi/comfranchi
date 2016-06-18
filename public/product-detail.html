@@ -1,0 +1,29 @@
+<template>
+<require from="./converters/blob-to-url"></require>
+  <require from="./converters/file-list-to-array"></require>
+	<form >
+		Name: <input value.bind="name" type="text"/>
+		<br/>
+		Price: <input value.bind="price" type="text"/>
+		<br/>
+		Description: <input value.bind="description" type="text"/>
+		<br/>
+		<input  click.delegate="saveProduct()" type="submit" value="Submit Form"/>
+		<input click.delegate="getContacts()" type="button" value="Get Products"/>
+		<br/>
+		<input  type="file" enctype="multipart/form-data" multiple accept="image/*" change.delegate="filesSelected($event)" />
+		<div>
+	    <ul>
+	      <li repeat.for="product of productImages">
+	        <img width="50" height="auto" src.bind="product | blobToUrl" />
+	        <h3>${product.name}: ${product.type} ${product.size / 1000} kb</h3>
+	        <p>Last Modified: ${product.lastModifiedDate}</p>
+	      </li>
+	    </ul>
+	  </div>
+		<br/>
+		<LABEL>${name}</LABEL>
+		<br/>
+		<LABEL>${price}</LABEL>
+	</form>
+</template>

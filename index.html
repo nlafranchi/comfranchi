@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <title>Aurelia</title>
+    <title>SunBear</title>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/style.css"/>
   </head>
   <body>
     <h1>Loading...</h1>
@@ -15,7 +16,7 @@
           aurelia.use
             .standardConfiguration();
 
-          aurelia.start().then(() => aurelia.setRoot('app', document.body));
+          aurelia.start().then(() => aurelia.setRoot('public/app', document.body));
         });
       });
 

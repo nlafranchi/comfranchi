@@ -8,7 +8,6 @@ export class ProductDetail {
 	}
 	
 	saveProduct() {
-
 		console.log('post request', this);
 		let product = {
 		  name: this.name,
@@ -31,6 +30,7 @@ export class ProductDetail {
 	      console.log(response.productId);
 	  });
   }
+  
   filesSelected(event) {
   	console.log(event);
   	let fileList = event.srcElement.files;

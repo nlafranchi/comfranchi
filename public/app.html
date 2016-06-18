@@ -1,0 +1,22 @@
+<template>
+  <require from='./product-detail'></require>
+  <require from='./products'></require>
+  
+  <!-- Nav Bar -->
+  <nav class="bar">
+    <div class="bar-item" repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+          <a href.bind="row.href">${row.title}</a>
+    </div>
+
+	  <div class="username bar-item">
+	    Sun Bear
+	  </div>
+	  <div class="search bar-item">
+	    <input type="search" placeholder="search..." />
+	  </div>
+	</nav>
+  <div class="page-host">
+    <router-view></router-view>
+  </div>
+
+</template
