@@ -1,17 +1,22 @@
 <template>
 	<section class="">
-		<div class="flex-container ">
-		  <div class="flex-item flex-header"><p>Name</p></div> 
-      <div class="flex-item flex-header"><p>Id</p></div> 
-      <div class="flex-item flex-header"><p>Price</p></div> 
-      <div class="flex-item flex-header"><p>Description</p></div> 
-     
+		<div class="grid-row">
+			<div class="flex-item grid-header flex-item-tool"></div>
+			<div class="flex-item grid-header"><p>Name</p></div> 
+	    <div class="flex-item grid-header"><p>Id</p></div> 
+	    <div class="flex-item grid-header"><p>Price</p></div> 
+	    <div class="flex-item grid-header"><p>Description</p></div> 
+	     
 	  </div>
-		<div repeat.for="product of products" class="flex-container ">
+	  <div class="grid-content">
+	  	<div repeat.for="product of products" class="grid-row">
+    	<div class="flex-item flex-item-tool"><a route-href="route: product-detail; params.bind: {id: product._id}"><img src="public/images/svg/edit.svg" alt="Edit"/></a></div>
       <div class="flex-item"><p>${product.name}</p></div> 
       <div class="flex-item"><p>${product._id}</p></div> 
       <div class="flex-item"><p>${product.price}</p></div> 
       <div class="flex-item"><p>${product.description}</p></div> 
 	  </div>
+	  </div>
+		
 	</section>
 </template>

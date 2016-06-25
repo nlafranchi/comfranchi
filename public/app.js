@@ -10,7 +10,7 @@ export class App {
   configureRouter(config, router) {
     config.title = 'Aurelia';
     config.map([
-      { route: ['','products'],  name: 'products',  moduleId: './products',  nav: true, title:'Products' },
+      { route: ['products', ''],  name: 'products',  moduleId: './products',  nav: true, title:'Products' },
       { route: 'product-detail', name: 'product-detail',    moduleId: './product-detail',    nav: true, title:'Product-Detail' }
     ]);
 

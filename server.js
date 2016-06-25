@@ -8,8 +8,9 @@ var express = require('express')
   , errorHandler = require('errorhandler')
   , mongoose = require('mongoose')
   , Grid = require('gridfs-stream')
-  , dataservice = require('./custom_modules/product-service')
-  , imageservice = require('./custom_modules/image-service');
+  , productservice = require('./server/services/product-service')
+  , imageservice = require('./server/services/image-service')
+  , schemas = require('./server/schemas');
 var app = express();
 var url = require('url');
 
@@ -76,41 +77,45 @@ mongoose.connect('mongodb://localhost/products');
 var mongodb = mongoose.connection;
 var gfs = Grid(mongodb.db, mongoose.mongo);
 
-var productSchema = new mongoose.Schema({
-  name: String, 
-  description: String,
-  price: String,
-  sku: String
-});
-
+var productSchema = new mongoose.Schema(schemas.productSchema);
 var Product = mongoose.model('Product', productSchema);
+//onsole.log(categorySchema)
+// var categorySchema = new mongoose.Schema(schemas.categorySchema);
+// var Category = mongoose.model('Category', categorySchema)
+// console.log(categorySchema)
 app.use(express.static(__dirname));
 
+
+
 app.put('/products', function(request, response) {
-  dataservice.create(Product, request.body, response);
+  productservice.create(Product, request.body, response);
+});
+
+app.post('/products', function(request, response) {
+  productservice.update(Product, request.body, response);
 });
 
 app.get('/products', function(request, response) {
   var get_params = url.parse(request.url, true).query;
-  console.log({get_params});
   if (Object.keys(get_params).length == 0) {
-   	dataservice.list(Product, response);	
+   
+     var resp = productservice.list(Product, response);
+    console.log('resp: ' + resp)
   } else {
   	var keys = Object.keys(get_params);
   	var filter = {};
   	for (var i = 0; i < keys.length; i++) {
   		filter[keys[i]] = get_params[keys[i]];
   	}
-  	JSON.stringify(dataservice.query_by_args(Product, filter, response));
+    
+  	JSON.stringify(productservice.query_by_args(Product, filter, response));
   }
-   
 });
 
-
-app.get('/contacts/:primarycontactnumber/image', 
-function(request, response){
-  var gfs = Grid(mongodb.db, mongoose.mongo);
-  imageservice.getImage(gfs, request.params.primarycontactnumber, response);
+app.get('/products/:id', function(request, response) {
+  if (request.params.id) {
+    JSON.stringify(productservice.query_by_args(Product, {_id: request.params.id}, response));
+  }
 });
 
 app.post('/products/:primarycontactnumber/image', 

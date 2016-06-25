@@ -2,14 +2,13 @@
 <require from="./converters/blob-to-url"></require>
   <require from="./converters/file-list-to-array"></require>
 	<form >
-		Name: <input value.bind="name" type="text"/>
+		Name: <input value.bind="product.name" type="text"/>
 		<br/>
-		Price: <input value.bind="price" type="text"/>
+		Price: <input value.bind="product.price" type="text"/>
 		<br/>
-		Description: <input value.bind="description" type="text"/>
+		Description: <input value.bind="product.description" type="text"/>
 		<br/>
 		<input  click.delegate="saveProduct()" type="submit" value="Submit Form"/>
-		<input click.delegate="getContacts()" type="button" value="Get Products"/>
 		<br/>
 		<input  type="file" enctype="multipart/form-data" multiple accept="image/*" change.delegate="filesSelected($event)" />
 		<div>

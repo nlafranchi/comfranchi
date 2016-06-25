@@ -1,11 +1,12 @@
   exports.create = (model, requestBody, response) => {
+    console.log('hello: ', requestBody);
   var product = toProduct(requestBody, model);
   var name = requestBody.name;
   product.save((error, docsInserted) => {
-    console.log('saving');
+    console.log('saving', docsInserted);
     if (!error) {
-      var res = product.save();
-      console.log("result from save: ", docsInserted);
+      var res = product.save({});
+      console.log("result from save: ", docsInserted, res);
       response.setHeader('content-type', 'application/json');
       response.end(JSON.stringify({ productId: docsInserted}));
     } else {
@@ -56,10 +57,18 @@
         });
       }
     });
-};
+}
+
+exports.update = (model, requestBody, response) => {
+  var product = toProduct(requestBody, model);
+
+  model.update({_id: requestBody._id}, requestBody, function (err, prod) {
+  response.send(prod);
+});
+}
 
 function toProduct(body, Product) {
-  console.log('toProduct: ', body)
+ // console.log('toProduct: ', body)
   return new Product({
     name: body.name,
     price: body.price,
@@ -78,8 +87,9 @@ exports.list = function (model, response) {
       response.setHeader('Content-type', 'application/json');
       response.end(JSON.stringify(result));
     }
+    console.log(result)
     return JSON.stringify(result);
-  });
+  }).sort({name:1});
 } ;
 
 exports.query_by_args = function (model, filter, response) {

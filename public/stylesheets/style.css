@@ -8,11 +8,11 @@ html {
 /* 
  * Flex 
  */
-.flex-container {
+.grid-row {
   padding: 0;
   margin: 0;
   list-style: none;
-  
+  flex-flow: column wrap;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -23,19 +23,32 @@ html {
   justify-content: space-around;
 }
 
-.flex-container .flex-header {
+.grid-row .grid-header {
 	 font-weight: bold;
 	 color: white;
 	 background: grey;
+   outline: 1px solid black;
 }
 
 .flex-item {
  background: #E0E7FF;
-  width: 25%;
+  width: 24%;
   text-align: center;
   outline: 1px solid black;
   word-break: break-all;
 }
+.flex-item-tool {
+  width: 4%;
+}
+
+
+.grid-content {
+    flex: 1 1 auto;
+    position: relative;
+    /* need this to position inner content */
+    overflow-y: auto;
+    max-height: 200px;
+  }
 
 
 
